@@ -94,105 +94,75 @@ document.addEventListener('DOMContentLoaded', () => {
     switchLanguage(currentLang);
 });
 
-// --- BUBBLING ELIXIR CURSOR EFFECT ---
+// --- BUBBLING ELIXIR CURSOR EFFECT (with Touch Support) ---
 
-// Wait for the main content script to be loaded and ready
 document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.getElementById('elixir-canvas');
+    if (!canvas) return; // Exit if canvas is not found
     const ctx = canvas.getContext('2d');
-
-    // Set canvas to full screen
+    
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-
-    // Array to hold all our bubble particles
     let particlesArray = [];
-
-    // Use your club's vibrant color palette
     const colors = ['#238A17', '#FA7921', '#FE9920', '#FFFFFF'];
+    const mouse = { x: undefined, y: undefined };
 
-    // Track mouse position
-    const mouse = {
-        x: undefined,
-        y: undefined,
-    };
+    // --- THE FIX is in these new event handlers ---
 
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-        
-        // Create a burst of 2 particles on mouse move for a lively effect
+    // A single function to update the position from both mouse and touch
+    function updatePosition(event) {
+        // Check if it's a touch event
+        if (event.touches && event.touches.length > 0) {
+            mouse.x = event.touches[0].clientX;
+            mouse.y = event.touches[0].clientY;
+        } 
+        // Else, it's a mouse event
+        else {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        }
+    }
+
+    // Function to generate particles at the current position
+    function generateParticles() {
+        if (mouse.x === undefined || mouse.y === undefined) return;
         for (let i = 0; i < 2; i++) {
             particlesArray.push(new Particle());
         }
+    }
+
+    // Listen for mouse movement on desktop
+    window.addEventListener('mousemove', (event) => {
+        updatePosition(event);
+        generateParticles();
     });
 
-    // Particle class
-    class Particle {
-        constructor() {
-            this.x = mouse.x;
-            this.y = mouse.y;
-            this.size = Math.random() * 8 + 2; // Bubbles of various sizes (2px to 10px)
-            this.speedX = Math.random() * 3 - 1.5; // Random horizontal drift
-            this.speedY = Math.random() * 3 + 1;   // Bubbles always float up
-            this.color = colors[Math.floor(Math.random() * colors.length)]; // Pick a random color
-        }
-        
-        // Update particle's position and size over time
-        update() {
-            this.x += this.speedX;
-            this.y -= this.speedY; // Move upwards
-            if (this.size > 0.2) {
-                this.size -= 0.1; // Shrink over time
-            }
-        }
-        
-        // Draw the particle on the canvas
-        draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+    // Listen for finger movement on touch devices
+    window.addEventListener('touchmove', (event) => {
+        updatePosition(event);
+        generateParticles();
+    });
+
+    // --- The rest of the script is the same ---
+
+    class Particle { /* ... same as before ... */
+        constructor() { this.x = mouse.x; this.y = mouse.y; this.size = Math.random() * 8 + 2; this.speedX = Math.random() * 3 - 1.5; this.speedY = Math.random() * 3 + 1; this.color = colors[Math.floor(Math.random() * colors.length)]; }
+        update() { this.x += this.speedX; this.y -= this.speedY; if (this.size > 0.2) { this.size -= 0.1; } }
+        draw() { ctx.fillStyle = this.color; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); }
     }
     
-    // Function to manage all particles
-    function handleParticles() {
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-            
-            // If particle is too small, remove it from the array to save memory
-            if (particlesArray[i].size <= 0.3) {
-                particlesArray.splice(i, 1);
-                i--;
-            }
-        }
+    function handleParticles() { /* ... same as before ... */
+        for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); particlesArray[i].draw(); if (particlesArray[i].size <= 0.3) { particlesArray.splice(i, 1); i--; } }
     }
     
-    // The main animation loop
-    function animate() {
-        // Clear a faint trail, which creates a beautiful "ghosting" effect
-        ctx.fillStyle = 'rgba(12, 71, 103, 0.1)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        handleParticles();
-        
-        // Create a smooth animation loop
-        requestAnimationFrame(animate);
+    function animate() { /* ... same as before ... */
+        ctx.fillStyle = 'rgba(12, 71, 103, 0.1)'; ctx.fillRect(0, 0, canvas.width, canvas.height); handleParticles(); requestAnimationFrame(animate);
     }
     
-    // Start the animation!
     animate();
-
-    // Responsive: resize canvas if window size changes
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-
-}); // End of new effect script
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+});
 
 // --- INTERACTIVE LIQUID BLOB EFFECT FOR CARD ---
 
