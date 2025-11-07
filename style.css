@@ -82,14 +82,19 @@ body {
 .card {
     width: 100%;
     max-width: 400px;
-    background: rgba(12, 71, 103, 0.3);
+    background-color: rgba(12, 71, 103, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    padding: 30px;
     transform-style: preserve-3d;
     transition: transform 0.8s;
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid transparent;
+    background-clip: padding-box;
+
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2), 
+                0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .card:hover {
@@ -560,3 +565,4 @@ html[dir="rtl"] #modal-close-btn:hover {
         transform: none; /* Disables the 3D tilt */
     }
 }
+
