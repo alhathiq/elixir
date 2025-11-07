@@ -75,6 +75,8 @@ body {
 
 .card-container {
     perspective: 1000px;
+    overflow: hidden;
+    border-radius: 20px;
 }
 
 .card {
@@ -551,3 +553,4 @@ html[dir="rtl"] #modal-close-btn:hover {
     color: var(--primary-dark-green);
     transform: translateY(-2px);
 }
+
