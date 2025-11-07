@@ -22,109 +22,111 @@
         </filter>
       </defs>
     </svg>
-    <div class="card-container">
-        <div class="card">
-            <div class="gooey-container">
-                <div class="interactive-blob"></div>
-            </div>
-            <div class="card-content">
-                <div class="card-header">
-                    <div class="logo">
-                        <img src="logo.png" alt="Club Logo">
-                    </div>
-                    <div class="language-switcher">
-                        <button id="lang-en">English</button>
-                        <button id="lang-ar">العربية</button>
-                    </div>
+    <div class="app-wrapper">
+        <div class="card-container">
+            <div class="card">
+                <div class="gooey-container">
+                    <div class="interactive-blob"></div>
                 </div>
-
-                <div class="card-body">
-                    <h1 id="welcome-message" data-en="Welcome," data-ar="أهلاً بك،">Welcome,</h1>
-                    <h2 id="member-name"></h2>
-                </div>
-
-                <!-- THE FINAL, CLEANER EVENTS SECTION -->
-                <div class="events-section">
-                    <h3 data-en="Future Events" data-ar="الفعاليات القادمة">Future Events</h3>
-                    <div class="event-list">
-
-                        <!-- Event 1: Note the new 'data-event-id' -->
-                        <div class="event" data-event-id="Opening-day" data-start-time="2025-11-11T10:00:00" data-end-time="2025-11-11T12:00:00" data-location="Faculty of Medicine, Béchar">
-                            <div class="event-date">
-                                <span class="day" data-en="11" data-ar="11">11</span>
-                                <span class="month" data-en="NOV" data-ar="نوفمبر">NOV</span>
-                            </div>
-                            <div class="event-details">
-                                <p class="event-title" data-en="Elixir - Opening ceremony" data-ar="حفل الافتتاح">Elixir Club - Grand Opening Ceremony</p>
-                                <p class="event-time" data-en="10:00 AM at Faculty of Medicine Hall" data-ar="10:00 صباحًا في كلية الطب">10:00 1M at Faculty of Medicine</p>
-                                <div class="event-links">
-                                    <a href="#" class="map-link" data-en="View Map" data-ar="معاينة الخريطة" data-lat="31.64355399060245" data-lon="-2.2316730020038795" data-title="Faculty of Medicine, Béchar">View Map</a>
-                                    <a href="#" class="calendar-link" data-en="Add to Calendar" data-ar="أضف للرزنامة">Add to Calendar</a>
-                                </div>
-                                <!-- The timeline is now an empty container. JS will build it. -->
-                                <div class="event-timeline"></div>
-                            </div>
+                <div class="card-content">
+                    <div class="card-header">
+                        <div class="logo">
+                            <img src="logo.png" alt="Club Logo">
                         </div>
-
-                        <!-- Event 2: Note the new 'data-event-id' -->
-                        <!-- <div class="event" data-event-id="tech-conference">
-                            <div class="event-date">
-                                <span class="day" data-en="12" data-ar="١٢">12</span>
-                                <span class="month" data-en="DEC" data-ar="ديسمبر">DEC</span>
-                            </div>
-                            <div class="event-details">
-                                <p class="event-title" data-en="Tech Conference 2025" data-ar="مؤتمر التكنولوجيا ٢٠٢٥">Tech Conference 2025</p>
-                                <p class="event-time" data-en="9:00 AM at Innovation Hub" data-ar="٩:٠٠ صباحًا في مركز الإبداع">9:00 AM at Innovation Hub</p>
-                                <div class="event-links">
-                                    <a href="#" class="map-link" data-lat="24.4666" data-lon="54.3666" data-title="Innovation Hub, Abu Dhabi">View Map</a>
-                                </div>
-                                <div class="event-timeline"></div>
-                            </div>
-                        </div> -->
-
+                        <div class="language-switcher">
+                            <button id="lang-en">English</button>
+                            <button id="lang-ar">العربية</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="card-footer">
-                    <h4 data-en="Connect with Us" data-ar="تواصل معنا">Connect with Us</h4>
-                    <div class="social-links">
-                        <a href="https://x.com/Elixir_phclub" target="_blank">X</a>
-                        <a href="https://t.me/elixirpharmaclub" target="_blank">TG</a>
-                        <a href="https://www.instagram.com/elixirpharma08/" target="_blank">IG</a>
+                    <div class="card-body">
+                        <h1 id="welcome-message" data-en="Welcome," data-ar="أهلاً بك،">Welcome,</h1>
+                        <h2 id="member-name"></h2>
+                    </div>
+
+                    <!-- THE FINAL, CLEANER EVENTS SECTION -->
+                    <div class="events-section">
+                        <h3 data-en="Future Events" data-ar="الفعاليات القادمة">Future Events</h3>
+                        <div class="event-list">
+
+                            <!-- Event 1: Note the new 'data-event-id' -->
+                            <div class="event" data-event-id="Opening-day" data-start-time="2025-11-11T10:00:00" data-end-time="2025-11-11T12:00:00" data-location="Faculty of Medicine, Béchar">
+                                <div class="event-date">
+                                    <span class="day" data-en="11" data-ar="11">11</span>
+                                    <span class="month" data-en="NOV" data-ar="نوفمبر">NOV</span>
+                                </div>
+                                <div class="event-details">
+                                    <p class="event-title" data-en="Elixir - Opening ceremony" data-ar="حفل الافتتاح">Elixir Club - Grand Opening Ceremony</p>
+                                    <p class="event-time" data-en="10:00 AM at Faculty of Medicine Hall" data-ar="10:00 صباحًا في كلية الطب">10:00 1M at Faculty of Medicine</p>
+                                    <div class="event-links">
+                                        <a href="#" class="map-link" data-en="View Map" data-ar="معاينة الخريطة" data-lat="31.64355399060245" data-lon="-2.2316730020038795" data-title="Faculty of Medicine, Béchar">View Map</a>
+                                        <a href="#" class="calendar-link" data-en="Add to Calendar" data-ar="أضف للرزنامة">Add to Calendar</a>
+                                    </div>
+                                    <!-- The timeline is now an empty container. JS will build it. -->
+                                    <div class="event-timeline"></div>
+                                </div>
+                            </div>
+
+                            <!-- Event 2: Note the new 'data-event-id' -->
+                            <!-- <div class="event" data-event-id="tech-conference">
+                                <div class="event-date">
+                                    <span class="day" data-en="12" data-ar="١٢">12</span>
+                                    <span class="month" data-en="DEC" data-ar="ديسمبر">DEC</span>
+                                </div>
+                                <div class="event-details">
+                                    <p class="event-title" data-en="Tech Conference 2025" data-ar="مؤتمر التكنولوجيا ٢٠٢٥">Tech Conference 2025</p>
+                                    <p class="event-time" data-en="9:00 AM at Innovation Hub" data-ar="٩:٠٠ صباحًا في مركز الإبداع">9:00 AM at Innovation Hub</p>
+                                    <div class="event-links">
+                                        <a href="#" class="map-link" data-lat="24.4666" data-lon="54.3666" data-title="Innovation Hub, Abu Dhabi">View Map</a>
+                                    </div>
+                                    <div class="event-timeline"></div>
+                                </div>
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <h4 data-en="Connect with Us" data-ar="تواصل معنا">Connect with Us</h4>
+                        <div class="social-links">
+                            <a href="https://x.com/Elixir_phclub" target="_blank">X</a>
+                            <a href="https://t.me/elixirpharmaclub" target="_blank">TG</a>
+                            <a href="https://www.instagram.com/elixirpharma08/" target="_blank">IG</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 
-    <!-- <div id="map-modal-overlay">
-        <div id="map-modal-content">
-            <button id="modal-close-btn">&times;</button>
-            <h3 id="map-modal-title"></h3>
-            <div id="map-container"></div>
-        </div>
-    </div> -->
+        <!-- <div id="map-modal-overlay">
+            <div id="map-modal-content">
+                <button id="modal-close-btn">&times;</button>
+                <h3 id="map-modal-title"></h3>
+                <div id="map-container"></div>
+            </div>
+        </div> -->
 
-    <!-- THE FINAL, CORRECT MODAL STRUCTURE -->
-    <div id="map-modal-overlay">
-        <div id="map-modal-content">
-            <button id="modal-close-btn">&times;</button>
-            <h3 id="map-modal-title">Event Location</h3>
-            <div id="map-container">
-                <div class="loader"></div>
-                <!-- This is a permanent iframe. It's much more reliable. -->
-                <!-- It starts with a blank 'src' to load nothing initially. -->
-                <iframe
-                    id="google-map-frame"
-                    src="about:blank"
-                    width="100%"
-                    height="100%"
-                    style="border:0;"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+        <!-- THE FINAL, CORRECT MODAL STRUCTURE -->
+        <div id="map-modal-overlay">
+            <div id="map-modal-content">
+                <button id="modal-close-btn">&times;</button>
+                <h3 id="map-modal-title">Event Location</h3>
+                <div id="map-container">
+                    <div class="loader"></div>
+                    <!-- This is a permanent iframe. It's much more reliable. -->
+                    <!-- It starts with a blank 'src' to load nothing initially. -->
+                    <iframe
+                        id="google-map-frame"
+                        src="about:blank"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </div>
