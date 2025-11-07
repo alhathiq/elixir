@@ -1,0 +1,544 @@
+:root {
+    --primary-dark-green: #003D00;
+    --primary-green: #238A17;
+    --accent-orange: #FA7921;
+    --accent-yellow: #FE9920;
+    --secondary-blue: #0C4767;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Poppins', 'Cairo', sans-serif;
+    background: linear-gradient(135deg, var(--secondary-blue), var(--primary-dark-green)); /* Original dark and immersive background */
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#elixir-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* CRITICAL: Places the canvas behind everything else */
+    pointer-events: none; /* CRITICAL: Allows clicks to go through to the content */
+}
+
+.card {
+    position: relative; /* Necessary for the blob's positioning */
+    overflow: hidden; /* Keeps the effect contained within the card */
+}
+
+.gooey-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: url('#gooey-effect'); /* Filter is applied here */
+}
+
+.interactive-blob {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: var(--accent-yellow); 
+    border-radius: 50%;
+    top: -200px; /* Start hidden */
+    left: -200px; /* Start hidden */
+    transition: transform 0.1s ease-out; /* Smooths the movement */
+    opacity: 0.6;
+}
+
+.card-content {
+    position: relative;
+    z-index: 2; /* Ensures content is on top of the gooey layer */
+    padding: 30px; /* The card's original padding is now here */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /* Ensures padding is calculated correctly */
+}
+
+/* .card:hover .interactive-blob {
+    opacity: 1;
+} */
+
+.card-container {
+    perspective: 1000px;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(12, 71, 103, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    padding: 30px;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.card:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 15px; /* Slightly increased for better proportions */
+    background: rgba(255, 255, 255, 0.95); /* A slightly transparent white plate */
+    padding: 8px; /* Adds breathing room around the logo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Lifts the logo off the card */
+}
+
+.language-switcher button {
+    background: none;
+    border: 1px solid var(--accent-orange);
+    color: var(--accent-orange);
+    padding: 5px 10px;
+    margin-inline-start: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 600;
+}
+
+.language-switcher button.active {
+    background-color: var(--accent-orange);
+    color: var(--primary-dark-green);
+}
+
+.card-body h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+    margin: 0;
+    animation: fadeInDown 1s ease-out;
+}
+
+.card-body h2 {
+    /* The font-size will now adjust: min of 1.5rem, max of 2em, scaling with screen width */
+    font-size: clamp(1.5rem, 5vw, 2em);
+    line-height: 1.2; /* Improves readability if the name wraps to a second line */
+    overflow-wrap: break-word; /* Allows long names to wrap nicely */
+    word-break: break-word; /* Additional browser support for wrapping */
+
+    font-weight: 700;
+    color: var(--accent-yellow);
+    margin: 10px 0;
+    animation: fadeInUp 1s ease-out;
+    background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.events-section h3 {
+    font-size: 1.5em;
+    color: var(--white);
+    border-bottom: 2px solid var(--accent-green);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    animation: fadeIn 1s ease-out forwards;
+    opacity: 0;
+}
+
+.event:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.event-date {
+    background-color: var(--accent-orange);
+    color: var(--primary-dark-green);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    margin-inline-end: 15px;
+    font-weight: 700;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+}
+
+.event-date .day {
+    font-size: 1.5em;
+    line-height: 1;
+}
+
+.event-date .month {
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.event-details {
+    line-height: 1.4;
+}
+
+.event-title {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.event-time {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.card-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.card-footer h4 {
+    margin: 0 0 15px 0;
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+.social-links a {
+    color: var(--accent-yellow);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.5em;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--accent-orange);
+    transform: translateY(-5px) scale(1.1);
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card-body h1 {
+        font-size: 2em;
+    }
+
+    .card-body h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* --- LeafletJS Custom Styling --- */
+
+/* Style the attribution text to fit the dark theme */
+.leaflet-control-attribution a {
+    color: #bbb !important;
+}
+.leaflet-control-attribution {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #ddd !important;
+}
+
+/* --- Interactive Map Modal Styling --- */
+
+/* Style for the 'View Map' link inside the event card */
+.map-link {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--accent-orange);
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 3px 8px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.map-link:hover {
+    background-color: var(--accent-orange);
+    color: var(--primary-dark-green);
+    transform: translateY(-2px);
+}
+
+/* The full-screen background overlay for the modal */
+#map-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 71, 103, 0.5); /* Semi-transparent version of your BG */
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Animation state */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* The class we will add with JS to show the modal */
+#map-modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* The actual modal content window */
+#map-modal-content {
+    background: var(--secondary-blue);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    width: 90%;
+    max-width: 800px;
+    height: 85%;
+    max-height: 600px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+
+    /* Animation state */
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+
+#map-modal-overlay.visible #map-modal-content {
+    transform: scale(1);
+}
+
+#map-modal-title {
+    color: var(--accent-yellow);
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Container where the map will be rendered */
+#map-container {
+    flex-grow: 1; /* Makes the map fill the available space */
+    border-radius: 10px;
+}
+
+/* Style the default mapbox logo and attribution */
+.mapboxgl-ctrl-bottom-left, .mapboxgl-ctrl-bottom-right {
+    filter: invert(1) grayscale(1) contrast(0.5); /* Makes controls fit dark theme */
+}
+
+
+#modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 2.5em;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+#modal-close-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* Styling for the Google Maps fallback link */
+.directions-link {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--primary-dark-green);
+    background-color: var(--accent-orange);
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 5px;
+    margin-inline-start: 8px; /* Logical property for LTR/RTL spacing */
+}
+
+.directions-link:hover {
+    background-color: var(--accent-yellow);
+    transform: translateY(-2px);
+}
+
+/* --- AESTHETIC EVENT TIMELINE STYLING --- */
+.event-details {
+    width: 100%; /* Ensure details take full width */
+}
+.event-links {
+    margin-top: 5px;
+    margin-bottom: 20px; /* Space between links and timeline */
+}
+
+.event-timeline {
+    position: relative;
+    padding-inline-start: 25px; /* LTR/RTL friendly padding */
+    border-inline-start: 2px solid var(--accent-orange); /* The central vertical line */
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 15px;
+    opacity: 0; /* For animation */
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Stagger the animation for each item */
+.timeline-item:nth-child(2) { animation-delay: 0.1s; }
+.timeline-item:nth-child(3) { animation-delay: 0.2s; }
+.timeline-item:nth-child(4) { animation-delay: 0.3s; }
+/* Add more if needed */
+
+/* The dot on the timeline */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    inset-inline-start: -33px; /* Aligns dot on the line (LTR/RTL safe) */
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-yellow);
+    border: 2px solid var(--secondary-blue);
+}
+
+.timeline-time {
+    font-weight: 700;
+    color: var(--accent-yellow);
+    font-size: 0.9em;
+}
+
+.timeline-desc {
+    font-size: 0.9em;
+    color: var(--white);
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Remove old Leaflet attribution styles if they exist */
+.leaflet-control-attribution { display: none; }
+
+/* The map container is now a layout parent */
+#map-container {
+    position: relative; /* Needed for positioning the loader */
+}
+
+/* Style the loader itself using your accent color */
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--accent-yellow); /* Uses your brand color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+/* Define the spin animation */
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* THE VISIBILITY LOGIC */
+
+/* When the container is in its 'loading' state, show the loader and hide the iframe */
+#map-container.loading .loader {
+    display: block;
+}
+#map-container.loading iframe {
+    visibility: hidden; /* Hide the iframe (but keep its space) while loading */
+}
+
+/* By default, the loader is hidden and the iframe is visible */
+#map-container .loader {
+    display: none;
+}
+#map-container iframe {
+    visibility: visible;
+}
+
+/* --- Styling for "Add to Calendar" Button --- */
+
+.calendar-link {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--accent-yellow);
+    background-color: transparent;
+    border: 1px solid var(--accent-yellow);
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 5px;
+    /* margin-inline-start: 8px; LTR/RTL safe margin */
+}
+
+.calendar-link:hover {
+    background-color: var(--accent-yellow);
+    color: var(--primary-dark-green);
+    transform: translateY(-2px);
+}
