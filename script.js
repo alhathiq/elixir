@@ -1,6 +1,6 @@
 // --- DYNAMIC CONTENT & LANGUAGE SWITCHER (FINAL VERSION) ---
 
-// document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     
 //     // 1. All translatable timeline data is now here, in one place.
 //     const eventTimelines = {
@@ -434,5 +434,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
 
