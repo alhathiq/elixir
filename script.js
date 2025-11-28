@@ -1,62 +1,62 @@
 // --- DYNAMIC CONTENT & LANGUAGE SWITCHER (FINAL VERSION) ---
 
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. All translatable timeline data is now here, in one place.
-    const eventTimelines = {
-        // 'warsha': {
-        //     en: [
-        //         { time: '10:00 AM', desc: 'Guest Arrival & Welcome Message' },
-        //         { time: '10:20 AM', desc: 'Interactive Zones & Activities' },
-        //         { time: '10:20 AM', desc: 'Serving Gifts' },
-        //         { time: '12:00 PM', desc: 'Closing' }
-        //     ],
-        //     ar: [
-        //         { time: '10:00 صباحًا', desc: 'وصول الضيوف والكلمة الافتتاحية' },
-        //         { time: '10:20 صباحًا', desc: 'نشاطات تفاعلية' },
-        //         { time: '10:20 صباحًا', desc: 'توزيع الهدايا' },
-        //         { time: '12:00 مساءً', desc: 'اختتام الحفل' }
-        //     ]
-        // }
-        // ,
-        // 'tech-conference': {
-        //     en: [
-        //         { time: '9:00 AM', desc: 'Registration & Morning Coffee' },
-        //         { time: '10:00 AM', desc: 'Keynote: The Future of Pharmacy Tech' },
-        //         { time: '1:00 PM', desc: 'Networking Lunch' }
-        //     ],
-        //     ar: [
-        //         { time: '٩:٠٠ صباحًا', desc: 'التسجيل وقهوة الصباح' },
-        //         { time: '١٠:٠٠ صباحًا', desc: 'الكلمة الرئيسية: مستقبل تكنولوجيا الصيدلة' },
-        //         { time: '١:٠٠ مساءً', desc: 'غداء وتعارف' }
-        //     ]
-        // }
-    };
+//     // 1. All translatable timeline data is now here, in one place.
+//     const eventTimelines = {
+//         'warsha': {
+//             en: [
+//                 { time: '10:00 AM', desc: 'Guest Arrival & Welcome Message' },
+//                 { time: '10:20 AM', desc: 'Interactive Zones & Activities' },
+//                 { time: '10:20 AM', desc: 'Serving Gifts' },
+//                 { time: '12:00 PM', desc: 'Closing' }
+//             ],
+//             ar: [
+//                 { time: '10:00 صباحًا', desc: 'وصول الضيوف والكلمة الافتتاحية' },
+//                 { time: '10:20 صباحًا', desc: 'نشاطات تفاعلية' },
+//                 { time: '10:20 صباحًا', desc: 'توزيع الهدايا' },
+//                 { time: '12:00 مساءً', desc: 'اختتام الحفل' }
+//             ]
+//         }
+//         ,
+//         'tech-conference': {
+//             en: [
+//                 { time: '9:00 AM', desc: 'Registration & Morning Coffee' },
+//                 { time: '10:00 AM', desc: 'Keynote: The Future of Pharmacy Tech' },
+//                 { time: '1:00 PM', desc: 'Networking Lunch' }
+//             ],
+//             ar: [
+//                 { time: '٩:٠٠ صباحًا', desc: 'التسجيل وقهوة الصباح' },
+//                 { time: '١٠:٠٠ صباحًا', desc: 'الكلمة الرئيسية: مستقبل تكنولوجيا الصيدلة' },
+//                 { time: '١:٠٠ مساءً', desc: 'غداء وتعارف' }
+//             ]
+//         }
+//     };
 
-    // 2. This new function dynamically builds the timelines
-    const updateTimelines = (lang) => {
-        document.querySelectorAll('.event[data-event-id]').forEach(eventElement => {
-            const eventId = eventElement.dataset.eventId;
-            const timelineContainer = eventElement.querySelector('.event-timeline');
+//     // 2. This new function dynamically builds the timelines
+//     const updateTimelines = (lang) => {
+//         document.querySelectorAll('.event[data-event-id]').forEach(eventElement => {
+//             const eventId = eventElement.dataset.eventId;
+//             const timelineContainer = eventElement.querySelector('.event-timeline');
             
-            // Clear any old timeline items
-            timelineContainer.innerHTML = ''; 
+//             // Clear any old timeline items
+//             timelineContainer.innerHTML = ''; 
 
-            const timelineData = eventTimelines[eventId]?.[lang];
+//             const timelineData = eventTimelines[eventId]?.[lang];
 
-            if (timelineData) {
-                timelineData.forEach(item => {
-                    const timelineItemHTML = `
-                        <div class="timeline-item">
-                            <div class="timeline-time">${item.time}</div>
-                            <div class="timeline-desc">${item.desc}</div>
-                        </div>
-                    `;
-                    timelineContainer.innerHTML += timelineItemHTML;
-                });
-            }
-        });
-    };
+//             if (timelineData) {
+//                 timelineData.forEach(item => {
+//                     const timelineItemHTML = `
+//                         <div class="timeline-item">
+//                             <div class="timeline-time">${item.time}</div>
+//                             <div class="timeline-desc">${item.desc}</div>
+//                         </div>
+//                     `;
+//                     timelineContainer.innerHTML += timelineItemHTML;
+//                 });
+//             }
+//         });
+//     };
     
     // --- The original logic from here on ---
     const urlParams = new URLSearchParams(window.location.search);
@@ -434,4 +434,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
