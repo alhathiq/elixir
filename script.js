@@ -4,20 +4,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 1. All translatable timeline data is now here, in one place.
     const eventTimelines = {
-        'Opening-day': {
-            en: [
-                { time: '10:00 AM', desc: 'Guest Arrival & Welcome Message' },
-                { time: '10:20 AM', desc: 'Interactive Zones & Activities' },
-                { time: '10:20 AM', desc: 'Serving Gifts' },
-                { time: '12:00 PM', desc: 'Closing' }
-            ],
-            ar: [
-                { time: '10:00 صباحًا', desc: 'وصول الضيوف والكلمة الافتتاحية' },
-                { time: '10:20 صباحًا', desc: 'نشاطات تفاعلية' },
-                { time: '10:20 صباحًا', desc: 'توزيع الهدايا' },
-                { time: '12:00 مساءً', desc: 'اختتام الحفل' }
-            ]
-        }
+        // 'warsha': {
+        //     en: [
+        //         { time: '10:00 AM', desc: 'Guest Arrival & Welcome Message' },
+        //         { time: '10:20 AM', desc: 'Interactive Zones & Activities' },
+        //         { time: '10:20 AM', desc: 'Serving Gifts' },
+        //         { time: '12:00 PM', desc: 'Closing' }
+        //     ],
+        //     ar: [
+        //         { time: '10:00 صباحًا', desc: 'وصول الضيوف والكلمة الافتتاحية' },
+        //         { time: '10:20 صباحًا', desc: 'نشاطات تفاعلية' },
+        //         { time: '10:20 صباحًا', desc: 'توزيع الهدايا' },
+        //         { time: '12:00 مساءً', desc: 'اختتام الحفل' }
+        //     ]
+        // }
         // ,
         // 'tech-conference': {
         //     en: [
@@ -434,3 +434,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
