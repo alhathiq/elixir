@@ -434,38 +434,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
-
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiYWxoYXRoaXEiLCJhIjoiY21sMjY1dnN1MGZyZDNmcXowdnc3cnJ5YyJ9.uahF0YMYz197a4QfEVeu_Q'
-
-const map = new mapboxgl.Map({
-  accessToken: MAPBOX_ACCESS_TOKEN,
-  container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v12',
-  zoom: 17, // initial zoom level, 0 is the world view, higher values zoom in
-  center: [-2.232, 31.6433333],
-});
-
-mapboxgl.setRTLTextPlugin(
-  'https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.3.0/mapbox-gl-rtl-text.js',
-  null,
-  true // Lazy load the plugin
-)
-
-const popup = new mapboxgl.Popup({ offset: 5 }).setText(
-  'نادي إكسير يرحب بكم\n\n\n\n\nWelcome to Elixir Club'
-);
-
-const el = document.createElement('div');
-el.className = 'custom-marker';
-
-const marker = new mapboxgl.Marker({
-  element: el,
-  color: '#FF0000', // set marker color
-  scale: 1.5
-})
-  .setLngLat([-2.232, 31.6433333])
-  .setPopup(popup)
-  .addTo(map);
-
-map.addControl(new mapboxgl.NavigationControl());
-//map.scrollZoom.disable();
