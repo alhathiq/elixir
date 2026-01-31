@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Club Member Card</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.18.1/mapbox-gl.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
@@ -96,7 +98,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <!-- <div id="map-modal-overlay">
         <div id="map-modal-content">
@@ -115,6 +117,7 @@
                 <div class="loader"></div>
                 <!-- This is a permanent iframe. It's much more reliable. -->
                 <!-- It starts with a blank 'src' to load nothing initially. -->
+                <div id="map"></div>
                 <iframe
                     id="google-map-frame"
                     src="about:blank"
@@ -129,6 +132,7 @@
     </div>
 </body>
 </html>
+
 
 
 
